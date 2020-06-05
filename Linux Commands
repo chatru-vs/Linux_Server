@@ -90,5 +90,15 @@ terminal type1
 ctrl+d logout fromt the terminal
 ctrl+alt+del - Reboot
 
+ssh-keygen
+ssh-copy-id <server2 IP>
+ssh <server2_IP>
+We need to use a method of copying files over a network. scp is the best tool, like this:
 
+[dev@server1]$ scp *.gz <server2 IP>:~/
+
+Then we can extract the files:
+
+[dev@server2]$ tar -xvf deploy_content.tar.gz >> tar-output.log
+[dev@server2]$ tar -xvf deploy_script.tar.gz >> tar-output.log
 
