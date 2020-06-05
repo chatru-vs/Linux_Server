@@ -1,0 +1,94 @@
+List running services using service command on a CentOS/RHEL 6.x or older
+The syntax is as follows for CentOS/RHEL 6.x and older (pre systemd systems):
+service --status-all
+service --status-all | more
+service --status-all | grep ntpd
+service --status-all | les
+
+PRINT THE STATUS OF ANY SERVICE
+To print the status of apache (httpd) service:
+service httpd status
+
+LIST ALL KNOWN SERVICES (CONFIGURED VIA SYSV)
+chkconfig --list
+
+LIST SERVICE AND THEIR OPEN PORTS
+netstat -tulpn
+
+TURN ON / OFF SERVICE
+ntsysv
+chkconfig service off
+chkconfig service on
+chkconfig httpd off
+chkconfig ntpd on
+
+The syntax is:
+systemctl
+systemctl | more
+systemctl | grep httpd
+systemctl list-units --type service
+systemctl list-units --type mount
+
+To list all services:
+systemctl list-unit-files
+
+To list SysV services only on CentOS/RHEL 7.x+ use (does not include native systemd services)
+chkconfig --list
+
+How to check the status of a service using systemd
+Say you want to check status of a service named sshd, run
+$ systemctl status sshd.service
+
+One can verify that if a service named sshd is running (active) or not running (inactive) on a CentOS/RHEL 7.x+:
+systemctl is-active sshd
+systemctl is-enabled sshd
+systemctl is-active nginx
+systemctl is-enabled nginx
+systemctl is-enabled httpd
+============================================================================================================================================================
+
+Define priority to process on the server:
+
+nice -n 15 (max 20 min -20) firefox
+
+Define priority to process on the server:
+
+renice 10 -p 6082
+
+disk free
+
+df -h gb and mb show
+
+Ram free check
+free
+free -m (mb in data)
+free -g (show gb in data)
+
+vi name (create new file)
+vi {"name"} open existing file
+i - insert mode
+esc - command mode terminate instert made
+:wq save and quiet
+o enter to new line
+shift+z+z - save the file
+
+Bash command:
+vi sample.sh
+i 
+#!/bin/sh
+ls
+esc shift+z+z
+bash sample.sh
+vi newsample.sh
+i
+#!/bin/sh
+pwd
+#present working directory
+esc shift+z+z
+Terminal Command
+terminal type1
+ctrl+d logout fromt the terminal
+ctrl+alt+del - Reboot
+
+
+
