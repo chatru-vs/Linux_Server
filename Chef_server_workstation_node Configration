@@ -1,0 +1,127 @@
+1. Setting Up A Chef Server
+In this portion of the example solution, we'll do the following: 1. Install Chef Server 2. Create our Chef Server user (`cloud_user`) 3. Create our Chef Server organization (`examplecom`)
+
+chef-server-ctl org-create examplecom 'Example.com' --association_user cloud_user -f /home/cloud_user/examplecom-validator.pem
+
+chef-server-ctl user-create cloud_user Cloud user clouud_user@example.com 'passwd@12' -f /home/cloud_user/cloud_user.pem 
+
+You must supply an addon name. Valid names include: chef-ha, chef-manage, opscode-push-jobs-server, 
+bash: You: command not found
+
+rpm -Uvh chef-server-core-12.17.33-1.el7.x86_64.rpm - chef server installtion package
+
+[root@ip-10-0-1-57 tmp]# chef-server-ctl user-create cloud_user Cloud User cloud_user@example.com 'passwd@12' -f /home/cloud_user.pem
+[root@ip-10-0-1-57 tmp]# chef-server-ctl org-create examplecom 'Example.com' --association_user cloud_user -f /home/cloud/examplecom-validator.pem
+
+chef-server-ctl user-create cloud_user Cloud User cloud_user@example.com 'passwd@12' -f /home/cloud_user/cloud_user.pem
+chef-server-ctl org-create examplecom 'Example.cm' --association_user -f /home/cloud_user/examplecom-validator.pem
+===========================================================================================================================================================================================
+
+
+2. Setting Up A Chef Workstation
+In this portion of the example solution, we'll configure a server to act as our workstation. We'll do the following: 1. Install the Chef Development Kit (ChefDK) 2. Create a Chef repository (`chef-repo`) 3. Configure knife to connect to our Chef Server
+ rpm -Uvh chefdk-2.5.3-1.el7.x86_64.rpm
+ eval "$(chef shell-init bash)"
+chef generate repo ~/chef-repo
+Knife configure
+
+[https://ip-10-0-1-67.ec2.internal/organizations/myorg]
+
+[cloud_user@ip-10-0-1-186 ~]$ knife configure
+WARNING: No knife configuration file found. See https://docs.chef.io/config_rb_knife.html for                                                                                                details.
+Please enter the chef server URL: [https://ip-10-0-1-186.ec2.internal/organizations/myorg] https://ip-10-0-1-67.ec2.internal/organizations/example.com  <chef server address>
+Please enter an existing username or clientname for the API: [cloud_user]
+*****
+
+You must place your client key in:
+  /home/cloud_user/.chef/cloud_user.pem
+Before running commands with Knife
+
+
+
+===========================================================================================================================================================================================
+
+
+3. VBootstrapping A New Node - 
+
+In this portion of the example solution, we'll bootstrap our first node to be managed by Chef.
+ knife bootstrap 34.228.23.233 -N node1 -x cloud_user -p YnbRLnoHOc --sudo
+
+
+===========================================================================================================================================================================================
+
+ruby_block[print reconfigure warnings] action run
+    - execute the ruby block print reconfigure warnings
+Recipe: private-chef::postgresql
+  * runit_service[postgresql] action restart (up to date)
+  * execute[restart_postgresql_log_service] action run
+    - execute /opt/opscode/embedded/bin/sv restart /opt/opscode/sv/postgresql/log
+Recipe: private-chef::oc_bifrost
+  * runit_service[oc_bifrost] action restart (up to date)
+  * execute[restart_oc_bifrost_log_service] action run
+    - execute /opt/opscode/embedded/bin/sv restart /opt/opscode/sv/oc_bifrost/log
+Recipe: private-chef::oc_id
+  * runit_service[oc_id] action restart (up to date)
+  * execute[restart_oc_id_log_service] action run
+    - execute /opt/opscode/embedded/bin/sv restart /opt/opscode/sv/oc_id/log
+Recipe: private-chef::nginx
+  * runit_service[nginx] action restart (up to date)
+Recipe: private-chef::opscode-solr4
+  * runit_service[opscode-solr4] action restart (up to date)
+  * execute[restart_opscode-solr4_log_service] action run
+    - execute /opt/opscode/embedded/bin/sv restart /opt/opscode/sv/opscode-solr4/log
+Recipe: private-chef::opscode-expander
+  * runit_service[opscode-expander] action restart (up to date)
+  * execute[restart_opscode-expander_log_service] action run
+    - execute /opt/opscode/embedded/bin/sv restart /opt/opscode/sv/opscode-expander/log
+Recipe: private-chef::bookshelf
+  * runit_service[bookshelf] action restart (up to date)
+  * execute[restart_bookshelf_log_service] action run
+    - execute /opt/opscode/embedded/bin/sv restart /opt/opscode/sv/bookshelf/log
+Recipe: private-chef::opscode-erchef
+  * runit_service[opscode-erchef] action restart (up to date)
+  * execute[restart_opscode-erchef_log_service] action run
+    - execute /opt/opscode/embedded/bin/sv restart /opt/opscode/sv/opscode-erchef/log
+Recipe: <Dynamically Defined Resource>
+  * service[opscode-erchef] action restart
+    - restart service service[opscode-erchef]
+Recipe: private-chef::partybus
+  * execute[set initial migration level] action run
+    - execute cd /opt/opscode/embedded/service/partybus && ./bin/partybus init
+  * ruby_block[migration-level file sanity check] action run (skipped due to not_if)
+Recipe: private-chef::opscode-chef-mover
+  * execute[restart_opscode-chef-mover_log_service] action run
+    - execute /opt/opscode/embedded/bin/sv restart /opt/opscode/sv/opscode-chef-mover/log
+Recipe: private-chef::redis_lb
+  * execute[restart_redis_lb_log_service] action run
+    - execute /opt/opscode/embedded/bin/sv restart /opt/opscode/sv/redis_lb/log
+Recipe: private-chef::nginx
+  * execute[restart_nginx_log_service] action run
+    - execute /opt/opscode/embedded/bin/sv restart /opt/opscode/sv/nginx/log
+Recipe: private-chef::rabbitmq
+  * execute[restart_rabbitmq_log_service] action run
+    - execute /opt/opscode/embedded/bin/sv restart /opt/opscode/sv/rabbitmq/log
+  * runit_service[rabbitmq] action restart (up to date)
+
+==============================================================================================================================================================================
+
+Hello! It looks like you were trying to browse to your Chef Server but you haven't installed the Management Console.
+
+If you prefer, you can access the server programmatically with the Chef Server API. To learn how to do this, head over to our API Documentation pages.
+
+If you do want to use your browser to manage your server, then install the Management Console. It's free
+
+ for up to 25 nodes.
+
+One way to install the Management Console is to log in as root and type these commands:
+
+ # chef-server-ctl install chef-manage 
+ # chef-server-ctl reconfigure 
+ # chef-manage-ctl reconfigure 
+Alternatively, you can download the Management Console as an installable package from the Management Console downloads page.
+You may also be interested in our other add-ons. These are available as packages from our Chef Server downloads page or you can type chef-server-ctl install. Without arguments, the command lists the packages available for installation.
+
+
+
+
+
