@@ -1,0 +1,102 @@
+Install Puppet Enterprise on the "Puppet master" server - Centos 7
+
+Text-Mode
+
+Pull down the installation file:
+$ wget --content-disposition 'https://pm.puppetlabs.com/puppet-enterprise/2018.1.7/puppet-enterprise-2018.1.7-el-7-x86_64.tar.gz'
+
+Expand the file:
+$ tar -xf puppet-enterprise-2018.1.7-el-7-x86_64.tar.gz
+
+Run the installation script:
+$ cd puppet-enterprise-2018.1.7-el-7-x86_64
+$ sudo ./puppet-enterprise-installer
+...
+How to proceed? [1]: 1 - install in text mode
+Update the password and DNS alt names:
+
+"console_admin_password": "password"
+...
+"pe_install::puppet_master_dnsaltnames": ["puppet", "master"]
+Save and exit, then continue installation:
+
+Proceed with installation using the pe.conf at
+/home/cloud_user/puppet-enterprise-2018.1.7-el-7-x86_64/
+conf.d/custom-pe.conf? [Yn]y
+
+Update the PATH for sudoers:
+$ sudo vi /etc/sudoers.d/puppet_path
+
+
+Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/opt/puppetlabs/bin
+esc+wq
+Save and exit the file, then refresh the Bash session:
+
+$ bash
+Perform a Puppet run twice:
+
+$ sudo puppet agent -t
+$ sudo puppet agent -t
+
+======================================================================================================================================================================================
+Install the puppet in Graphical-Mode
+Update the /etc/hosts file:
+
+$ sudo vi /etc/hosts
+
+127.0.0.1   puppet.ec2.internal localhost localhost.localdomain localhost4 localhost4.localdomain4
+
+esc+wq
+
+Save and exit.
+
+Pull down the installation file:
+$ wget --content-disposition 'https://pm.puppetlabs.com/puppet-enterprise/2018.1.7/puppet-enterprise-2018.1.7-el-7-x86_64.tar.gz'
+
+Expand the file:
+$ tar -xf puppet-enterprise-2018.1.7-el-7-x86_64.tar.gz
+
+Run the installation script:
+$ cd puppet-enterprise-2018.1.7-el-7-x86_64
+$ sudo ./puppet-enterprise-installer
+...
+How to proceed? [1]: 2
+Do not navigate to the provided URL, instead go to https://PUBLIC_IP_OF_MASTER:3000.
+
+Set the DNS alt names and the password using the graphical prompt. Click Continue.
+
+Review the plan, then click Continue again.
+
+Click Deploy Now. Installation will take about 8 minutes.
+
+Return to the command line and update the PATH for sudoers:
+
+$ sudo vi /etc/sudoers.d/puppet_path
+
+Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/opt/puppetlabs/bin
+Save and exit the file, then refresh the Bash session:
+
+$ bash
+
+
+
+======================================================================================================================================
+
+Update the Puppet master to support Ubuntu 18.04 agent architecture
+Access the Puppet Enterprise console through HTTPS and the public IP address of the Puppet master server.
+
+Go to Classification.
+
+Select the Puppet Master group.
+
+Under Configuration, add the pe_repo::platform::ubuntu_1804_amd64 class. Click Add class. Commit 1 change.
+
+=====================================================================================================================================
+
+On the Puppet Enterprise Console, copy the installation command from the Unsigned Certs page.
+
+Paste and run the command on the node1 "additional node."
+
+Check the fingerprint of node1 before signing it on the Puppet Enterprise Console:
+
+$ sudo puppet agent --fingerprint
