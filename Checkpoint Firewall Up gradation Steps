@@ -1,0 +1,12 @@
+- upgrade seconday Firewall with: Check_Point_R80.40_T294_Fresh_Install_and_Upgrade.tar.
+- after reload
+- change version on CheckPoint manager
+- push policy
+- upgrade primary: Check_Point_R80.40_T294_Fresh_Install_and_Upgrade.tar
+- change version on CheckPoint manager
+- after reload push policy
+- check connectivity
+- install patch on primary: Check_Point_R80_40_JUMBO_HF_Bundle_T48_sk165456_FULL.tar
+- after reload, install patch on seconday.
+- after reload, check that the snmpd are running on both cluster members.
+- done
