@@ -1,0 +1,25 @@
+oslevel - Know the OS Version
+prtconf - hardware information
+lscfg | grep proc - CPU monitoring
+topas - provide the overview of the system
+iostat  - Monitor the devices / I/O statics/monitoring
+lvmstat - To monitor LVM
+SAR - System activity report
+lparstat - lpar statics
+vmstat - display virtual memory statics/paging space.
+ifconfig - Network adaptor configre information
+bootinfo -r - get physical memort information
+Netstat- Network monitor
+
+
+CPU Monitoring -	vmstat, iostat, topas, sar, time/timex
+Memory Monitoring -	vmstat, topas, ps, lsps, ipcs
+I/O Subsystem -	vmstat, topas, iostat, lvmstat, lsps, lsatt/lsdev, lspv/lsvg/lslv
+Network	- netstat, topas, atmstat, entstat, tokstat, fddistat, nfsstat, ifconfig
+Processes & Threads -	ps, pstat, topas
+schedo -L - process scheduler
+nmon - Network monitoring
+
+
+
+
