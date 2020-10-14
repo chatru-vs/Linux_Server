@@ -1,0 +1,11 @@
+pip install django
+python -m django --version
+django-admin startproject mysite - create project
+python manage.py runserver - run server
+python manage.py createsuperuser - create super user
+python manage.py makemigrations - change to database reflect
+python manage.py migrate - apply the pending change by the makemigration
+models register and app register- search on the google for this.
+pip3 install djangorestframework
+
+
