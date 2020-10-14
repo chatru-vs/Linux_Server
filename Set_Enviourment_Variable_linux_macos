@@ -1,0 +1,39 @@
+Open the current user’s profile into a text editor
+vi ~/.bash_profile
+Add the export command for every environment variable you want to persist.
+export JAVA_HOME=/opt/openjdk11
+Save your changes.
+Adding the environment variable to a user’s bash profile alone will not export it automatically. However, the variable will be exported the next time the user logs in.
+
+To immediately apply all changes to bash_profile, use the source command.
+
+source ~/.bash_profile
+
+=====================================================================================================================================================================================
+
+3.4  How to Add a Directory to the PATH in macOS/Linux
+To add a directory to the existing PATH in macOS/Unixes, add the following line at the end of one of the startup scripts, such as "~/.bashrc", "~/.login" "~/.bash_profile", "~/.profile" (where ~ denotes the home directory of the current user) or "/etc/profile" for ALL users.
+
+// Append a directory in front of the existing PATH
+export PATH=/path/to/dir:$PATH
+To refresh the bash shell, issue a "source" command (or re-start the bash shell):
+
+// Refresh the bash shell
+source ~/.bashrc
+// or
+source ~/.bash_profile
+source ~/.profile
+source /etc/profile
+To verify the new setting, launch CMD:
+
+echo $PATH
+path1:path2:path3:...
+Notes:
+
+Unixes/macOS does not search the current directory (.), unless you include it explicitly in the PATH. In other words, to run a program in the current directory, you need to provide the directory (./), for example,
+./myProgram
+You could include the current directory in the PATH, by adding this line in a startup script:
+// Append the current directory (.) in front of the existing PATH
+export PATH=.:$PATH
+(Windows searches the current directory (.) automatically before searching the PATH.)
+Unixes/macOS uses colon (:) as the path separator; while Windows uses semicolon (;).
