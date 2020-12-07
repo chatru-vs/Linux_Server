@@ -1,0 +1,64 @@
+yum install nginx
+
+
+Apache airflow commnad:
+
+# Starting up the Service
+service airflow-webserver start
+
+# Stopping the Service
+service airflow-webserver stop
+# Restarting the Service
+service airflow-webserver restart
+# Checking the Status of the Service
+service airflow-webserver status
+# Viewing the Logs
+journalctl -u airflow-webserver -e
+
+
+touch to create the file
+ifconfig
+Top
+chmod - change permission | 777 owner group other
+cat - show the content of the file
+vim - editor (esc+:wq!) save the file
+rsync - backup
+systemctl - start stop staus of service
+nmcli connection show | dev | down | modify
+nmtui
+yum | to install the package
+cp -rvf /mnt/* /etc/dev 
+rpm -ivh *.rpm (Insatll the package)
+rpm qa | grep samba*
+yum install samba*
+netstat -pnltu | grep nginx
+ss -plnt sport eq :80
+ps aux | grep PID
+fuser -n tcp 80
+sudo cp /etc/bind/db.local /etc/bind/db..203.com
+
+sudo certbot-auto certonly --standalone -d acharyashala.in  
+
+
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/acharyashala.in/fullchain.pem
+/etc/letsencrypt/live/acharyashala.in/privkey.pem
+/etc/letsencrypt/live/acharyashala.in/privkey.pem
+	
+   Your key file has been saved at:
+   
+   Your cert will expire on 2020-07-27. To obtain a new or tweaked
+   version of this certificate in the future, simply run certbot-auto
+   again. To non-interactively renew all of your certificates, run
+   "certbot-auto renew"
+ - If you like Certbot, please consider supporting our work by:
+
+   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:  
+
+
+
+<virtual Host 192.168.0.1:443>
+DocumentRoot /var/www/haml2
+ServerName acharyashala.in
