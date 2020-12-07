@@ -1,0 +1,64 @@
+Create a new Ubuntu 16x and 18x virtual machine login
+
+# sudo su
+
+# apt-get update
+
+
+# apt install python
+
+
+# python –version
+
+Python 2.7.12
+
+
+# apt-get install software-properties-common
+
+# apt-get install python-pip
+# export SLUGIFY_USERS_TEXT_UNIDECODE=yes
+# pip install apache-airflow
+# airflow initdb
+
+Gets error so upgrade pip
+ pip install --upgrade pip
+ airflow initdb
+
+Gets error so  hash -d pip
+
+#  hash -d pip
+# pip install apache-airflow
+
+# airflow initdb
+
+Gets error so down grade marshmallow-sqlalchemy
+# pip uninstall marshmallow-sqlalchemy
+# pip install marshmallow-sqlalchemy==0.17.1
+# airflow initdb
+
+Works!
+# airflow webserver -p 8080
+
+Open network to allow port 8080 for IP address of server
+
+Go to browser and enter URL: <IP address>:8080
+
+Gets an error that the scheduler does not appear to be running
+
+To fix
+# ls -al ~/airflow/
+# vi ~/airflow/airflow.cfg
+
+Search for max_threads and change from 2 to 1 because we are running sqlight for the database
+
+
+# airflow webserver --help
+# airflow webserver -p 8080 -D
+
+Start airflow with -D for demon
+
+
+# airflow scheduler -D
+
+Start the scheduler in the background
+# airflow worker -D
