@@ -1,0 +1,20 @@
+touch to create the file
+ifconfig - see network information
+Top - see system information
+chmod - change permission | 777 owner group other
+cat - show the content of the file
+vim - editor (esc+:wq!) save the file
+rsync - backup
+systemctl - start stop staus of service
+nmcli connection show | dev | down | modify
+nmtui
+yum | to install the package
+cp -rvf /mnt/* /etc/dev - copy host to destination
+rpm -ivh *.rpm (Insatll the package)
+rpm qa | grep samba*
+yum install samba*
+netstat -pnltu | grep nginx
+ss -plnt sport eq :80
+ps aux | grep PID
+fuser -n tcp 80
+sudo cp /etc/bind/db.local /etc/bind/db..203.com
