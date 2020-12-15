@@ -1,0 +1,124 @@
+[node1] (local) root@192.168.0.8 ~
+$ docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: chatrughan
+Password: 
+WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+[node1] (local) root@192.168.0.8 ~
+$ docker pull ibmcom/websphere-traditional
+Using default tag: latest
+latest: Pulling from ibmcom/websphere-traditional
+e92ed755c008: Pull complete 
+b9fd7cb1ff8f: Pull complete 
+ee690f2d57a1: Pull complete 
+53e3366ec435: Pull complete 
+dd713b70221f: Pull complete 
+d4513061bd85: Pull complete 
+65135b2561fc: Pull complete 
+08901c42d245: Pull complete 
+d6c2936f301a: Pull complete 
+f09ee5b245d1: Pull complete 
+5ed1c4f6300c: Pull complete 
+Digest: sha256:c8cef5e95b94fa31b1c939e8f89fa62491515a5837dc144031622ad3b3499d8c
+Status: Downloaded newer image for ibmcom/websphere-traditional:latest
+docker.io/ibmcom/websphere-traditional:latest
+[node1] (local) root@192.168.0.8 ~
+$ docker run -d -t --name webs ibmcom/websphere-traditional
+340769c3114f5532ebffecf3fa890eea0045367e229ba0885d5acf51e28b78b0
+[node1] (local) root@192.168.0.8 ~
+$ docker ps
+CONTAINER ID        IMAGE                          COMMAND                  CREATED             STATUS              PORTS               NAMES
+340769c3114f        ibmcom/websphere-traditional   "/work/start_server.…"   5 seconds ago       Up 4 seconds                            webs
+[node1] (local) root@192.168.0.8 ~
+$ docker run -v /config:/etc/websphere  -p 9043:9043 -p 9443:9443 websphere-traditional:latest
+Unable to find image 'websphere-traditional:latest' locally
+docker: Error response from daemon: pull access denied for websphere-traditional, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+[node1] (local) root@192.168.0.8 ~
+$ ocker run --name was-server -h was-server -p 9043:9043 -p 9443:9443 -d \
+>    websphere-traditional:latest
+bash: ocker: command not found
+[node1] (local) root@192.168.0.8 ~
+$ docker run --name <container-name> -h <container-name> \
+>   -e UPDATE_HOSTNAME=true -e PROFILE_NAME=<profile-name> \
+>   -e NODE_NAME=<node-name> -e SERVER_NAME=<server-name> \
+>   -p 9043:9043 -p 9443:9443 -d <profile-image-name>
+bash: syntax error near unexpected token `newline'
+[node1] (local) root@192.168.0.8 ~
+$ docker exec was-server cat /tmp/PASSWORD
+Error: No such container: was-server
+[node1] (local) root@192.168.0.8 ~
+$ docker exec webs cat /tmp/PASSWORD
+3Wojr+I7
+[node1] (local) root@192.168.0.8 ~
+$ docker run websphere-traditional:9.0.5.0 versionInfo.sh -ifixes
+Unable to find image 'websphere-traditional:9.0.5.0' locally
+docker: Error response from daemon: pull access denied for websphere-traditional, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+[node1] (local) root@192.168.0.8 ~
+$ docker run websphere-traditional versionInfo.sh -ifixes
+Unable to find image 'websphere-traditional:latest' locally
+docker: Error response from daemon: pull access denied for websphere-traditional, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+[node1] (local) root@192.168.0.8 ~
+$ docker run ibmcom/websphere-traditional versionInfo.sh -ifixes
+WVER0010I: Copyright (c) IBM Corporation 2002, 2012; All rights reserved.
+WVER0012I: VersionInfo reporter version 1.15.1.48, dated 2/8/12
+
+--------------------------------------------------------------------------------
+IBM WebSphere Product Installation Status Report
+--------------------------------------------------------------------------------
+
+Report at date and time May 17, 2020 11:40:58 AM UTC
+
+Installation
+--------------------------------------------------------------------------------
+Product Directory        /opt/IBM/WebSphere/AppServer
+Version Directory        /opt/IBM/WebSphere/AppServer/properties/version
+DTD Directory            /opt/IBM/WebSphere/AppServer/properties/version/dtd
+Log Directory            /opt/IBM/WebSphere/AppServerIMData/logs
+
+Product List
+--------------------------------------------------------------------------------
+JAVA8                    installed
+BASE                     installed
+
+Installed Product
+--------------------------------------------------------------------------------
+Name            IBM SDK, Java Technology Edition, Version 8
+Version         8.0.6.10
+ID              JAVA8
+Build Level     pxa6480sr6fp10-20200408_01
+Build Date      04/08/20
+Architecture    x86-64 (64 bit)
+
+Installed Product
+--------------------------------------------------------------------------------
+Name                  IBM WebSphere Application Server
+Version               9.0.5.3
+ID                    BASE
+Build Level           f5032008.04
+Build Date            2/26/20
+Package               com.ibm.websphere.ILAN.v90_9.0.5003.20200226_0941
+Architecture          x86-64 (64 bit)
+Installed Features    WebSphere Application Server traditional
+                      EJBDeploy tool for pre-EJB 3.0 modules
+                      Embeddable EJB container
+                      Stand-alone thin clients and resource adapters
+
+--------------------------------------------------------------------------------
+End Installation Status Report
+--------------------------------------------------------------------------------
+[node1] (local) root@192.168.0.8 ~
+$ docker run -v /config:/etc/websphere  -p 9043:9043 -p 9443:9443 ibmcom/websphere-traditional
+Configure logging mode
+WASX7357I: By request, this scripting client is not connected to any server process. Certain configuration and application operations will be available in local mode.
+WASX7357I: By request, this scripting client is not connected to any server process. Certain configuration and application operations will be available in local mode.
+WASX7303I: The following options are passed to the scripting environment and are available as arguments that are stored in the argv variable: "[/work/config-ibm/webContainer.props]"
+HPEL is enabled
+Starting logViewer ................
+Starting server ...................
