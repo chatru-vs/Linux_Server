@@ -1,0 +1,33 @@
+ProcedureTo Set the ANT_HOME Variable on Windows
+Choose Start -> Control Panel, and double-click the System icon.
+
+Click the Advanced tab, and then click the Environment Variables button.
+
+Under System Variables, select New to create the ANT_HOME environment variable.
+
+Set the variable name to ANT_HOME and the variable value to apache-install-dir\apache-ant-version and click OK.
+
+For example, the installation directory might be C:\Java\apache-ant-1.7.0.
+
+Select New again to create the ANT_OPTS environment variable.
+
+Set the variable name to ANT_OPTS and the variable value to -Xms256M -Xmx512M and click OK.
+
+Select the PATH environment variable and select Edit.
+
+Add %ANT_HOME%\bin to the end or beginning of the PATH.
+
+Click OK and then click OK again.
+
+To test the setting, type ant at a command prompt and press Return to see the below information.
+
+C:\Windows>ant
+Buildfile: build.xml does not exist!
+Build failed
+
+C:\Windows>ant -version
+Apache Ant(TM) version 1.9.15 compiled on May 10 2020
+
+If a Build not found error message appears, you have correctly installed Ant.
+
+If you do not see an error message, check the environment variable settings and make sure they are pointing to the correct directory locations.
