@@ -5,6 +5,28 @@ service --status-all | more
 service --status-all | grep ntpd
 service --status-all | les
 
+Install and remove the Service:
+
+Yum install httpd -y
+Yum uninstall httpd -y
+
+Permission: root, group, others | Use case to used are 1 4 and 7.
+
+r = read permission
+w = write permission
+x = execute permission
+- = no permission
+
+Number	Permission Type	Symbol
+0	No Permission	---
+1	Execute	--x
+2	Write	-w-
+3	Execute + Write	-wx
+4	Read	r--
+5	Read + Execute	r-x
+6	Read +Write	rw-
+7	Read + Write +Execute	rwx
+
 PRINT THE STATUS OF ANY SERVICE
 To print the status of apache (httpd) service:
 service httpd status
