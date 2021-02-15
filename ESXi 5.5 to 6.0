@@ -1,0 +1,10 @@
+To get the new function Below steps has been performed to upgrade the ESXi 5.5 to 6.0.
+
+1.Power Off all the machines from VM (As there is no Domain Controller is running on this Hypervisor)
+2.Enable SSH Shell & SSH both on this host in case of worst scenario( Also if we have iLO details for this blade, that will be plus point)
+3.Power Off all the machines running on the host and put the host in maintenance mode
+Note: in case of vCenter is not available We could have migrated all the machines to another host but that will consume more time 
+3.Boot the Hypervisor with the upgrded ESXi iso or just go to the SSH session try executing the esxcli commands to upgrade the host, this will also require immediate reboot after the upgrade.
+4. download and copy the ESXi ISO file to vm and logon to this server and connect to host's iLO using IE from vm. Then we can use Remote Console and mount the ISO remotely and perform the ESXi upgrade.
+
+5.Disable IP v6 from the host and power On all the machines on the upgraded host.
